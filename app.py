@@ -4,6 +4,7 @@ import numpy as np
 from PIL import Image
 import requests
 from io import BytesIO
+import tensorflow as tf
 
 # Cargar el modelo
 loaded_model = tf.keras.models.load_model('saved_model')
