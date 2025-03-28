@@ -1,5 +1,6 @@
-
 streamlit
-pandas
-pip isntall tensorflow
+tensorflow
 numpy
+joblib
+pillow
+requests
