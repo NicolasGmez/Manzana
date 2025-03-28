@@ -3,13 +3,7 @@ import streamlit as st
 import numpy as np
 from PIL import Image
 
-
-@st.cache_resource
-def load_model():
-    # Update the path to include the full path to your model in Google Drive
-    model = tf.keras.models.load_model("/content/drive/MyDrive/ciencia_de_datos.h5")  
-    return model
-
+model1 = joblib.load('model1.bin')
 
 # Función para preprocesar la imagen
 def preprocess_image(image):
