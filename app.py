@@ -6,8 +6,12 @@ import requests
 from io import BytesIO
 import tensorflow as tf
 
-# Cargar el modelo (asegúrate de tener un archivo model.h5 en la carpeta)
-modelo = tf.keras.models.load_model("modelo.h5")
+# Cargar el modelo (asegúrate de tener un archivo modelo.h5 en la carpeta)
+modelo = tf.keras.models.load_model("modelooo.h5")
+
+# Lista de nombres de clases (ajústala según tu modelo)
+clases = ['Apple___scab', 'Apple___black_rot', 'Apple___rust', 'Apple___healthy',
+    'Apple___alternaria_leaf_spot', 'Apple___brown_spot', 'Apple___gray_spot']
 
 # Función para hacer la predicción
 def predict_image(image):
@@ -15,7 +19,11 @@ def predict_image(image):
     image = np.array(image) / 255.0  # Normalizar
     image = np.expand_dims(image, axis=0)  # Añadir batch
     prediction = modelo.predict(image)
-    return prediction
+    
+    class_index = np.argmax(prediction)  # Índice de la clase con mayor probabilidad
+    class_name = clases[class_index]  # Nombre de la clase
+
+    return class_name, prediction[0][class_index]  # Retorna el nombre y la probabilidad
 
 # Interfaz gráfica en Streamlit
 st.title("Identificador de enfermedades de hojas de manzana")
@@ -41,7 +49,6 @@ if image:
     # Botones de predicción
     col1, col2 = st.columns(2)
     if col1.button("Realizar predicción"):
-        prediction = predict_image(image)
-        st.write("### Predicción:", np.argmax(prediction))
-    if col2.button("Realizar otra predicción"):
-        st.experimental_rerun()
+        class_name, confidence = predict_image(image)
+        st.write(f"### Predicción: **{class_name}**")
+        st.write(f"📊 **Confianza:** {confidence:.2%}")  # Muestra la confianza en porcentaje
