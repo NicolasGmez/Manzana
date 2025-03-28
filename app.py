@@ -1,5 +1,7 @@
+import os
+os.system("pip install tensorflow streamlit numpy pillow")
+import tensorflow as tf
 import streamlit as st
-import tensorflow
 import numpy as np
 import joblib as jb
 from PIL import Image
