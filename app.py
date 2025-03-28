@@ -5,17 +5,16 @@ from PIL import Image
 import requests
 from io import BytesIO
 import tensorflow as tf
-import joblib as jb
 
-# Cargar el modelo
-model1 = joblib.load('model1.bin')
+# Cargar el modelo (asegúrate de tener un archivo model.h5 en la carpeta)
+modelo = tf.keras.models.load_model("modelo.h5")
 
 # Función para hacer la predicción
 def predict_image(image):
     image = image.resize((256, 256))  # Ajustar tamaño
     image = np.array(image) / 255.0  # Normalizar
     image = np.expand_dims(image, axis=0)  # Añadir batch
-    prediction = model.predict(image)
+    prediction = modelo.predict(image)
     return prediction
 
 # Interfaz gráfica en Streamlit
