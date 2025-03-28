@@ -1,8 +1,6 @@
 import os
 import streamlit 
 import numpy as np
-
-from keras.preprocessing import image
 from PIL import Image
 import requests
 from io import BytesIO
