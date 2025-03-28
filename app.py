@@ -5,9 +5,10 @@ from PIL import Image
 import requests
 from io import BytesIO
 import tensorflow as tf
+import joblib as jb
 
 # Cargar el modelo
-loaded_model = tf.keras.models.load_model('saved_model')
+model1 = joblib.load('model1.bin')
 
 # Función para hacer la predicción
 def predict_image(image):
