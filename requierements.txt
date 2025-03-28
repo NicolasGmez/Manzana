@@ -1,7 +1,8 @@
-streamlit
-tensorflow
+streamlit==1.25.0
+tensorflow==2.13.0
 numpy
 joblib
 pillow
 requests
 tensorflow
+protobuf
