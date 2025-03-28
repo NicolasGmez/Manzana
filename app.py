@@ -1,15 +1,14 @@
 import os
-os.system("pip install tensorflow streamlit numpy pillow")
-import tensorflow as tf
 import streamlit as st
 import numpy as np
-import joblib as jb
+import tensorflow as tf
+from keras.preprocessing import image
 from PIL import Image
 import requests
 from io import BytesIO
 
 # Cargar el modelo
-model = joblib.load("model1")
+loaded_model = tf.keras.models.load_model('saved_model')
 
 # Función para hacer la predicción
 def predict_image(image):
